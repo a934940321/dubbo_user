@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2>修改密码</h2>
+<form action="/user/userChange" method="post" onsubmit="return sub()">
+    新密码:<input type="text" id="password" name="password"><br>
+    确认密码:<input type="text" id="password2" onkeyup="myKeyUp(this)"><span></span><br>
+    <input type="submit" value="确认修改" >
+
+</form>
+
+</body>
+
+<script src="/jquery/jquery.js"></script>
+<script>
+
+    var b = false;
+    function sub(){
+        return b;
+    }
+
+    $(function () {
+
+
+    })
+
+    function myKeyUp(obj){
+        //obj.value:获取标签的值
+        var password2 = obj.value;
+        var password = $("#password").val();
+        if (password == password2) {
+            $("#password2+span").css("color","green")
+            $("#password2+span").text("密码一致")
+            b = true;
+        }else {
+            $("#password2+span").css("color","red")
+            $("#password2+span").text("密码不一致")
+            b = false;
+        }
+    }
+
+</script>
+</html>

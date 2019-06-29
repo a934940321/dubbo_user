@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2>用户登录页面</h2>
+<p th:text="${msg}" style="color: red"></p>
+<form action="/user/isOk" method="post">
+    用户名:<input type="text" name="username" ><br>
+    密码:<input type="text" name="password" ><br>
+    <input type="submit" value="登录" > <a href="/user/toForget">忘记密码?</a><br>
+
+</form>
+<a href="http://localhost:8081/user/toRegister">注册</a>
+
+</body>
+</html>

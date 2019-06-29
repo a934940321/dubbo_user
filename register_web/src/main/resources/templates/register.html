@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2>注册页面</h2>
+<form action="/user/userRegister" method="post" onsubmit="return register()">
+    用户名:<input type="text" name="username" id="username"><span></span><br>
+    密码:<input type="text" name="password" id="password"><span></span><br>
+    邮箱:<input type="email" name="email" id="email" ><span></span><button id="ecode" style="display: none">发送邮箱验证码</button><br>
+    验证码:<input type="text"  id="code"><span></span><br>
+    <input type="submit" value="确认注册" id="sub"> <br>
+</form>
+</body>
+
+
+<script src="\jquery\jquery-2.1.1.min.js"></script>
+<script>
+    var b = false;
+    function register(){
+        return b;
+    }
+
+/*发送邮件*/
+    $(function () {
+        $("#ecode").click(function () {
+            var value = $("#email").val()
+            $.get("/user/email",{"email":value},function(data){
+                if(data == 1){
+                    alert("发送成功")
+                }else if (data == 0) {
+                    alert("发送失败，请稍后再试")
+                }
+
+            });
+        })
+
+        $("#password").blur(function () {
+            var text = $(this).val().trim();
+            if (text == '') {
+                $("#password+span").css("color","red");
+                $("#password+span").html("密码不能为空");
+                b = false;
+            }else {
+                $("#password+span").html("");
+                b = true;
+            }
+        })
+
+        /*判断验证码是否正确*/
+        $("#code").blur(function () {
+            var code = $(this).val();
+            $.get("/user/isCode",{"code":code},function(data){
+               if (data == 1){
+                   $("#code+span").css("color","green")
+                   $("#code+span").html("验证码正确");
+                   b = true;
+               } else if(data == 0){
+                   $("#code+span").css("color","red")
+                   $("#code+span").html("验证码错误");
+                   b = false;
+               }
+            });
+        })
+        
+        /*判断用户名不能为空*/
+        $("#username").blur(function () {
+            var value = $(this).val();
+             var text = value.trim();
+            if (text == '') {
+                $("#username+span").css("color","red")
+                $("#username+span").html("用户名不能为空");
+                return;
+            }
+            /*判断用户名是否已注册*/
+            $.get("/user/isExist",{"username":value},function(data){
+                if(data==1){
+                    $("#username+span").css("color","red")
+                    $("#username+span").html("已注册");
+                    b = false;
+                }else if(data==0){
+                    $("#username+span").css("color","green")
+                    $("#username+span").html("恭喜可用");
+                    b = true;
+                }
+            });
+        });
+
+        $("#email").blur(function () {
+            var value = $(this).val();
+            /*判断邮箱是否已注册*/
+            $.get("/user/emailIsExist",{"email":value},function(data){
+                if(data==1){
+                    $("#email+span").css("color","red")
+                    $("#email+span").html("已注册");
+                    b = false;
+                }else if(data==0){
+                    $("#email+span").html("");
+                    b = true;
+                }
+            });
+
+            var text = $(this).val();
+            if (text != "" && text != null){
+                $("#ecode").show();
+
+            }else {
+                $("#ecode").attr("style","display:none;");
+            }
+        })
+
+        $("#sub").click(function () {
+            var value = $("#code").val();
+            if (value == ""){
+                $("#code+span").css("color","red")
+                $("#code+span").html("验证码不能为空");
+                b = false;
+            }else {
+                $("#code+span").html("");
+
+            }
+        })
+    });
+</script>
+</html>
