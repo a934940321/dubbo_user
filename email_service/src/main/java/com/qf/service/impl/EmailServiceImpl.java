@@ -31,7 +31,7 @@ public class EmailServiceImpl implements IEmailService {
             MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage, true);
 
             //设置发送方
-            messageHelper.setFrom("");
+            messageHelper.setFrom("a934940321@sina.com");
 
             //设置接收方
             //to - 普通接收方
@@ -71,7 +71,7 @@ public class EmailServiceImpl implements IEmailService {
             MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage, true);
 
             //设置发送方
-            messageHelper.setFrom("");
+            messageHelper.setFrom("a934940321@sina.com");
 
             //设置接收方
             //to - 普通接收方
@@ -98,4 +98,7 @@ public class EmailServiceImpl implements IEmailService {
         }
         return uuid;
     }
+
+
+
 }

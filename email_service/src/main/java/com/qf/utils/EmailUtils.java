@@ -1,20 +1,24 @@
 package com.qf.utils;
 
+import com.alibaba.dubbo.config.annotation.Reference;
+import com.qf.entity.User;
+import com.qf.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.stereotype.Component;
 
-import javax.mail.MessagingException;
+import javax.mail.*;
 import javax.mail.internet.MimeMessage;
 import java.io.File;
 import java.io.UnsupportedEncodingException;
-import java.util.Date;
-import java.util.Random;
+import java.util.*;
 
 public class EmailUtils {
 
     @Autowired
     private static JavaMailSender javaMailSender;
+
 
     //生成4位数验证码
     public static String ecode(){
@@ -62,5 +66,9 @@ public class EmailUtils {
         }
         return true;
     }
+
+
+
+
 
 }

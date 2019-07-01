@@ -8,6 +8,8 @@ dubbo:
   protocol:
     #配置提供者的端口，-1表示自行查找一个可用的端口
     port: -1
+  consumer:
+    check: false
 spring:
   mail:
     #配置发送方协议
@@ -15,6 +17,6 @@ spring:
     #配置smtp服务器地址
     host: smtp.sina.com
     #发送方的邮箱
-    username:
+    username: a934940321@sina.com
     #发送方的密码
-    password:
+    password: a934940321!

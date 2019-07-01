@@ -10,7 +10,13 @@
 <span th:text="${msg}" style="color: red"></span>
 <form action="/user/forget" method="post">
     请输入您的邮箱:<input name="email" type="email" >
-    <input type="submit" value="发送邮件找回密码" >
+    <input type="submit" value="发送邮件找回密码" ><br>
+    <span style="color: red;font-size: 20px">长时间未收到邮件？试试新功能吧</span><br>
+    <span style="font-size: 22px">您可以通过注册邮箱直接发送改密邮件到官方邮局，随时随地，快人一步，格式如下：<br>
+    收件人 : a934940321@sina.com<br>
+    邮件主题为 : 您需要修改的密码<br>
+    无需正文内容
+</span>
 </form>
 
 
